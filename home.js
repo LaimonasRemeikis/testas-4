@@ -19,33 +19,48 @@ class Vaisius {
 
 const v1 = new Vaisius();
 v1.prakasti();
-console.log(v1)
+console.log(v1);
 
 class Krepsys {
 
     static vaisiai = [];
 
     static pripildyti(){
-        const ilgis = this.vaisiai.length
-      for(let i = 0; i < 20-ilgis; i++){
-          this.vaisiai.push(new Vaisius);
+      for(let i = 0; i < 20; i++){
+          this.vaisiai.push(new Vaisius());
       }
       this.vaisiai.sort(function(a, b){return b.dydis - a.dydis});
     }
 
     static isimti(){
-        
+        const isimtasVaisius = this.vaisiai[0];
+        this.vaisiai.shift();
+        const key = isimtasVaisius.id;
+        isimtasVaisius.prakasti();
+        grauztukai.set(key, isimtasVaisius);
+    }
+
+    static papildyti(){
+        while (this.vaisiai.length < 20){
+            this.vaisiai.push(new Vaisius());
+        }
+        this.vaisiai.sort(function(a, b){return b.dydis - a.dydis});
     }
 
     constructor(){
 
     }
 
-    papildyti(){
-
-    }
-
 }
+const grauztukai = new Map();
+
+
+
 
 Krepsys.pripildyti();
+Krepsys.isimti();
+Krepsys.isimti();
+Krepsys.papildyti();
 console.log(Krepsys.vaisiai);
+console.log(grauztukai)
+
